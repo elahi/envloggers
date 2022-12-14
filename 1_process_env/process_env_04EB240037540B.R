@@ -12,7 +12,7 @@ source("R/envlogger_functions.R")
 
 #### COMPILE FILES FROM A SINGLE FOLDER ####
 # Get file names
-files <- list.files(path = "data/0492 4E00 0C55 03")
+files <- list.files(path = "data/04EB 2400 3754 0B")
 files
 n_files <- length(files)
 i <- 1
@@ -41,6 +41,7 @@ d %>%
 
 # Remove duplicates
 d <- d %>% filter(file_i != "3")
+d <- d %>% filter(file_i != "7")
 
 ##### WRITE PROCESSED FILE ####
 write_csv(d, here("data_output", paste("envlogger_", serial2, ".csv", sep = "")))
