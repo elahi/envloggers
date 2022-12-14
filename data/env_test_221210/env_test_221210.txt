@@ -1,0 +1,7 @@
+Tested loggers D, E, F and original Hewatt high zone (small logger) and low zone (large logger) together in a water bath in home refrigerator. 
+
+High zone (small logger): 04EB 2400 3754 0B-20221210 203720
+Low zone (large logger): 0492 4E00 0C55 03-20221210 203853
+D: 04A5 3700 374B 0F-20221210 203958
+E: 0460 1700 1840 09-20221210 204048
+F: 0412 4400 DD3A 05-20221210 204144
