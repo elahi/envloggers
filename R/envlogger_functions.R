@@ -5,7 +5,7 @@
 ##' @log 
 ################################################################################
 
-
+#### FOR A SINGLE LOGGER, MULTIPLE DEPLOYMENTS ####
 # Parse env file name
 env_file_parse <- function(x, serial_only = TRUE){
   # Extract serial number
@@ -28,9 +28,6 @@ env_file_load <- function(i, my_serial = serial, my_files = files){
     mutate(file_i = as.character(i))
 }
 
-
-
-
 # Compile a set of files from a single logger
 env_file_compile <- function(){
   # First file
@@ -49,13 +46,7 @@ env_file_compile <- function(){
   return(d)
 }
 
-
-
-#### NOT USED ####
-
-
-#### FOLDER ####
-
+#### FOR MULTIPLE LOGGERS, SINGLE DEPLOYMENT, ENV_TEST FOLDER ####
 # Load a single file and modify
 env_file_load2 <- function(i, folder){
   require(tidyverse)
