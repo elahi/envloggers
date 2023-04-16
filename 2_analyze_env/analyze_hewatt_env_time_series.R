@@ -101,3 +101,9 @@ ds_long %>%
 
 ggsave(here("figs", "hewatt_env_boxplot.pdf"), 
        height = 4, width = 7)
+
+#### SAVE DATA SUMMARY FOR CLASS ANALYSIS ####
+
+ds_long
+
+write.csv(ds_long, "data_output/hewatt_env_time_series_2022.csv")
