@@ -104,6 +104,16 @@ ggsave(here("figs", "hewatt_env_boxplot.pdf"),
 
 #### SAVE DATA SUMMARY FOR CLASS ANALYSIS ####
 
+# Save long file as is
 ds_long
-
 write.csv(ds_long, "data_output/hewatt_env_time_series_2022.csv")
+
+# Save wide files by tidal height
+d_high <- d_summary %>% filter(zone == "high")
+d_mid <- d_summary %>% filter(zone == "mid")  
+
+write.csv(d_high, "data_output/hewatt_env_time_series_wide_high_2022.csv")
+write.csv(d_mid, "data_output/hewatt_env_time_series_wide_mid_2022.csv")
+
+
+
