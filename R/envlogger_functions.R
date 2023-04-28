@@ -46,6 +46,26 @@ env_file_compile <- function(){
   return(d)
 }
 
+# Compile a set of files from a single logger
+# Works with 1 file, or more than 1 file, in folder
+env_file_compile <- function(){
+  # First file
+  i <- 1
+  d <- env_file_load(i = i)
+  
+  # Loop through other files and add rows
+  if(n_files > 1){
+  for(i in 2:n_files){
+    d_i <- env_file_load(i = i)
+    d <- rbind(d, d_i)
+  }}
+  
+  # Add serial number
+  d <- d %>% mutate(serial = serial)
+  
+  return(d)
+}
+
 #### FOR MULTIPLE LOGGERS, SINGLE DEPLOYMENT, ENV_TEST FOLDER ####
 # Load a single file and modify
 env_file_load2 <- function(i, folder){
