@@ -3,6 +3,7 @@
 ##' @author Robin Elahi
 ##' @date 2023-04-28
 ##' @log 
+##' 2024-03-03: added new file
 ################################################################################
 
 #### PACKAGES, DATA ####
@@ -54,7 +55,7 @@ d4 %>%
   ggplot(aes(time, temp)) + 
   geom_line()
 
-# Agassize beach - 2022 logger
+# Agassiz beach - 2022 logger
 d5 <- read_csv("data_output/envlogger_041CDE000B1A0D.csv") %>% 
   mutate(site = "Agassiz", 
          elev_m = "tbd",
