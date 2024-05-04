@@ -5,6 +5,11 @@
 ##' @log 
 ################################################################################
 
+# Extract serial # from a file name
+extract_serial <- function(x){
+  strsplit(x, "-")[[1]][1]
+}
+
 #### FOR A SINGLE LOGGER, MULTIPLE DEPLOYMENTS ####
 # Parse env file name
 env_file_parse <- function(x, serial_only = TRUE){
