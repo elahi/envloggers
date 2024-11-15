@@ -2,7 +2,7 @@
 ##' @title Analyze Hewatt temperature data
 ##' @author Robin Elahi
 ##' @date 2022-12-14
-##' @log 
+##' @log 2024-11-15
 ################################################################################
 
 #### PACKAGES, DATA ####
@@ -14,9 +14,9 @@ theme_set(theme_bw(base_size = 10) +
             theme(panel.grid = element_blank(), 
                   strip.background = element_blank()))
 
-# Hewatt high zone
+# Hewatt 1.0m
 d1 <- read_csv("data_output/envlogger_04924E000C5503.csv") %>% 
-  mutate(zone = "high")
+  mutate(zone = "1.0m")
 d1 %>% 
   head(n = 1000) %>% 
   ggplot(aes(time, temp)) + 
@@ -24,7 +24,7 @@ d1 %>%
 
 # Hewatt mid zone
 d2 <- read_csv("data_output/envlogger_04EB240037540B.csv") %>% 
-  mutate(zone = "mid")
+  mutate(zone = "0.5m")
 d2 %>% 
   head(n = 1000) %>% 
   ggplot(aes(time, temp)) + 

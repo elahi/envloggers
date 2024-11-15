@@ -4,6 +4,7 @@
 ##' @date 2023-04-28
 ##' @log 
 ##' 2024-03-03: added new file
+##' 2024-11-15: added new file
 ################################################################################
 
 #### PACKAGES, DATA ####
@@ -18,7 +19,7 @@ theme_set(theme_bw(base_size = 10) +
 # Hewatt high zone - 2021 logger
 d1 <- read_csv("data_output/envlogger_04924E000C5503.csv") %>% 
   mutate(site = "Hewatt", 
-         elev_m = "1.04",
+         elev_m = "1.0",
          name = paste(site, "_", elev_m, "m", sep = ""))
 d1 %>% 
   head(n = 1000) %>% 
@@ -28,27 +29,27 @@ d1 %>%
 # Hewatt mid zone - 2021 logger
 d2 <- read_csv("data_output/envlogger_04EB240037540B.csv") %>% 
   mutate(site = "Hewatt", 
-         elev_m = "0.51",
+         elev_m = "0.5",
          name = paste(site, "_", elev_m, "m", sep = ""))
 d2 %>% 
   head(n = 1000) %>% 
   ggplot(aes(time, temp)) + 
   geom_line()
 
-# Hewatt high zone - 2022 logger
+# Hewatt 1.0m - 2022 logger
 d3 <- read_csv("data_output/envlogger_043D6E009A5A04.csv") %>% 
   mutate(site = "Hewatt", 
-         elev_m = "1.04",
+         elev_m = "1.0",
          name = paste(site, "_", elev_m, "m", sep = ""))
 d3 %>% 
   head(n = 1000) %>% 
   ggplot(aes(time, temp)) + 
   geom_line()
 
-# Hewatt mid zone - 2022 logger
+# Hewatt 0.5m - 2022 logger
 d4 <- read_csv("data_output/envlogger_04DF7800E60609.csv") %>% 
   mutate(site = "Hewatt", 
-         elev_m = "0.51",
+         elev_m = "0.5",
          name = paste(site, "_", elev_m, "m", sep = ""))
 d4 %>% 
   head(n = 1000) %>% 
@@ -58,7 +59,7 @@ d4 %>%
 # Agassiz beach - 2022 logger
 d5 <- read_csv("data_output/envlogger_041CDE000B1A0D.csv") %>% 
   mutate(site = "Agassiz", 
-         elev_m = "tbd",
+         elev_m = "0.2",
          name = paste(site, "_", elev_m, "m", sep = ""))
 d5 %>% 
   head(n = 1000) %>% 
@@ -76,7 +77,7 @@ d <- d %>%
          week = week(time), 
          jday = yday(time))
 
-write.csv(d, "data_output/intertidal_hms_env_raw.csv")
+write.csv(d, "data_output/intertidal_hms_env_raw_2024.csv")
 
 #### Time-series plot of raw data ####
 

@@ -4,6 +4,7 @@
 ##' @date 2023-02-21
 ##' @log 
 ##' 2024-03-03: added new files
+##' 2024-11-15: added new file
 ################################################################################
 
 #### PACKAGES, DATA ####
@@ -39,6 +40,10 @@ d %>%
   ggplot(aes(time, temp, color = file_i)) + 
   geom_line() + 
   facet_wrap(~ file_i)
+
+d %>% 
+  ggplot(aes(time, temp, color = file_i)) + 
+  geom_line()
 
 ##### WRITE PROCESSED FILE ####
 write_csv(d, here("data_output", paste("envlogger_", serial2, ".csv", sep = "")))
