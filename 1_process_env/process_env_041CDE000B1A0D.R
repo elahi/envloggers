@@ -5,7 +5,13 @@
 ##' @log 
 ##' 2024-03-03: added new files
 ##' 2024-11-15: added new file
+##' 2026-05-29: added three new files
 ################################################################################
+
+##' Logger serial: 041C DE00 0B1A 0D
+##' Location: Agassiz intertidal
+##' Note that before 2025, # of lines to skip is 20
+##' After 2025, # of lines to skip is 21
 
 #### PACKAGES, DATA ####
 library(here)
@@ -23,8 +29,15 @@ i <- 1
 serial <- env_file_parse(files[i])
 serial2 <- gsub(" ", "", serial, fixed = TRUE)
 
+# Pre-2025; skipping 20 lines
+d1 <- env_file_compile(my_files = files[1:5], my_skip = 20)
+# Post-2025; skipping 21 lines
+d2 <- env_file_compile(my_files = files[6:7], my_skip = 21)
+d2 <- d2 |> 
+  mutate(file_i = as.character(as.numeric(file_i) + 5))
+
 # Compile files
-d <- env_file_compile()
+d <- rbind(d1, d2)
 
 ##### QUALITY CONTROL ####
 # Check for duplicates

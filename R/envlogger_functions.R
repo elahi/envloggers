@@ -27,9 +27,9 @@ env_file_parse <- function(x, serial_only = TRUE){
 }
 
 # Load a single file and modify
-env_file_load <- function(i, my_serial = serial, my_files = files){
+env_file_load <- function(i, my_serial = serial, my_files = files, my_skip = 20){
   require(tidyverse)
-  read_csv(here("data", my_serial, my_files[i]), skip = 20) %>% 
+  read_csv(here("data", my_serial, my_files[i]), skip = my_skip) %>% 
     mutate(file_i = as.character(i))
 }
 
@@ -53,17 +53,18 @@ env_file_compile <- function(){
 
 # Compile a set of files from a single logger
 # Works with 1 file, or more than 1 file, in folder
-env_file_compile <- function(){
+env_file_compile <- function(my_files = files, my_skip = 20){
   # First file
   i <- 1
-  d <- env_file_load(i = i)
+  d <- env_file_load(i = i, my_files = my_files, my_skip = my_skip)
   
   # Loop through other files and add rows
+  n_files <- length(my_files)
   if(n_files > 1){
-  for(i in 2:n_files){
-    d_i <- env_file_load(i = i)
-    d <- rbind(d, d_i)
-  }}
+    for(i in 2:n_files){
+      d_i <- env_file_load(i = i, my_files = my_files, my_skip = my_skip)
+      d <- rbind(d, d_i)
+    }}
   
   # Add serial number
   d <- d %>% mutate(serial = serial)
