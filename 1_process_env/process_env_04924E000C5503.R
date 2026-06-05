@@ -42,5 +42,9 @@ d %>%
 # Remove duplicates
 d <- d %>% filter(file_i != "3")
 
+d %>% 
+  ggplot(aes(time, temp, color = file_i)) + 
+  geom_line() 
+
 ##### WRITE PROCESSED FILE ####
 write_csv(d, here("data_output", paste("envlogger_", serial2, ".csv", sep = "")))
