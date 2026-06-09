@@ -65,8 +65,8 @@ d |> distinct(file_i)
 d0 <- d0 |> 
   mutate(file_i = 0)
 
-d2 <- rbind(d0, d)
-d2 %>% 
+d <- rbind(d0, d)
+d %>% 
   ggplot(aes(time, temp, color = file_i)) + 
   geom_line()
 
