@@ -5,10 +5,9 @@
 ##' @log 
 ################################################################################
 
-my_location <- "cable140"
-##' Location: HMS cable, 000m
-##' Logger serial: 04A5 3700 374B 0F (n = 1)
-##' Logger serial: 0481 A700 CA1E 05 (n = 1)
+my_location <- "cable170"
+##' Location: HMS cable, 170m
+##' Logger serial: 04B3 5600 5342 10 (n = 1)
 ##' Note that before 2025, # of lines to skip is 20
 ##' After 2025, # of lines to skip is 21
 ##' Filter after 12pm of deployment date (check that this is ok!)
@@ -22,9 +21,9 @@ source("R/envlogger_functions.R")
 #### DEPLOYMENT 1 ####
 
 # Get file names
-files <- list.files(path = "data/04A5 3700 374B 0F", pattern = "\\.csv")
+files <- list.files(path = "data/04B3 5600 5342 10", pattern = "\\.csv")
 files
-i <- 2
+i <- 1
 
 # Folder with files
 serial <- env_file_parse(files[i])
@@ -37,45 +36,7 @@ d |>
 head(d)
 d |> 
   slice_head(n = 500) |> 
-  filter(time > as.POSIXct("2023-05-18 12:00:00")) |> 
-  ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
-
-tail(d)
-d |> 
-  slice_tail(n = 500) |> 
-  filter(time < as.POSIXct("2024-08-15 09:00:00")) |> 
-  ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
-
-d_trimmed <- d |>
-  filter(time > as.POSIXct("2023-05-18 12:00:00")) |> 
-  filter(time < as.POSIXct("2024-08-15 09:00:00"))
-  
-d_trimmed |> 
-  ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
-
-# Rename
-d1 <- d_trimmed |> 
-  mutate(file_i = as.character(1), 
-         serial = serial)
-
-#### DEPLOYMENT 2 ####
-# Get file names
-files <- list.files(path = "data/0481 A700 CA1E 05", pattern = "\\.csv")
-files
-i <- 1
-
-# Folder with files
-serial <- env_file_parse(files[i])
-serial2 <- gsub(" ", "", serial, fixed = TRUE)
-
-d <- env_file_load(i = 1, my_files = files[1], my_skip = 20)
-d |> 
-  ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
-
-head(d)
-d |> 
-  slice_head(n = 500) |> 
-  filter(time > as.POSIXct("2024-07-24 12:00:00")) |> 
+  filter(time > as.POSIXct("2024-07-09 12:00:00")) |> 
   ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
 
 tail(d)
@@ -85,19 +46,19 @@ d |>
   ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
 
 d_trimmed <- d |>
-  filter(time > as.POSIXct("2024-07-24 12:00:00")) |> 
+  filter(time > as.POSIXct("2024-07-09 12:00:00")) |> 
   filter(time < as.POSIXct("2025-09-12 09:00:00"))
   
 d_trimmed |> 
   ggplot(aes(time, temp)) + geom_point(alpha = 0.5)
 
 # Rename
-d2 <- d_trimmed |> 
-  mutate(file_i = as.character(2), 
+d1 <- d_trimmed |> 
+  mutate(file_i = as.character(1), 
          serial = serial)
 
 ##### QUALITY CONTROL ####
-d <- rbind(d1, d2)
+d <- rbind(d1)
 
 # Check for duplicates
 d %>% count(file_i, serial)
