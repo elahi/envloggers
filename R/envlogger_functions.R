@@ -74,18 +74,31 @@ env_file_compile <- function(my_files = files, my_skip = 20){
 
 #### FOR MULTIPLE LOGGERS, SINGLE DEPLOYMENT, ENV_TEST FOLDER ####
 # Load a single file and modify
-env_file_load2 <- function(i, folder){
+env_file_load2 <- function(i, folder, my_skip = 20){
   require(tidyverse)
-  read_csv(here("data", folder, files[i]), skip = 20) %>% 
+  read_csv(here("data", folder, files[i]), skip = my_skip) %>% 
     mutate(file_i = as.character(i))
 }
 
+env_file_load2 <- function(i, my_folder = folder, my_files = files, my_skip = 20){
+  require(tidyverse)
+  read_csv(here("data", my_folder, my_files[i]), skip = my_skip) %>% 
+    mutate(file_i = as.character(i))
+}
+
+env_file_load <- function(i, my_serial = serial, my_files = files, my_skip = 20){
+  require(tidyverse)
+  read_csv(here("data", my_serial, my_files[i]), skip = my_skip) %>% 
+    mutate(file_i = as.character(i))
+}
+
+
 # Compile a set of files from a single folder
-env_file_compile2 <- function(folder = folder){
+env_file_compile2 <- function(folder = folder, my_skip = 20){
   require(tidyverse)
   # First file
   i <- 1
-  d <- env_file_load2(i = i, folder = folder)
+  d <- env_file_load2(i = i, folder = folder, my_skip = my_skip)
   serial <- env_file_parse(files[i])
   # Add serial number
   d <- d %>% mutate(serial = serial)
